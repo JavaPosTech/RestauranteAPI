@@ -5,7 +5,7 @@ plugins {
 }
 
 version = "0.0.1"
-group = "br.com.fiap.restauranteapi"
+group = "br.com.fiap"
 
 java {
 	toolchain {
