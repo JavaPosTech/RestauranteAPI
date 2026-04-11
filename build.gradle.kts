@@ -17,6 +17,11 @@ repositories {
 	mavenCentral()
 }
 
+configurations.configureEach {
+	exclude(group = "ch.qos.logback", module = "logback-classic")
+	exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
+}
+
 dependencies {
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -27,6 +32,10 @@ dependencies {
 
 	runtimeOnly("org.postgresql:postgresql")
 	implementation("org.flywaydb:flyway-database-postgresql")
+
+	implementation("org.slf4j:slf4j-api")
+	implementation("org.apache.logging.log4j:log4j-slf4j-impl")
+	implementation("org.springframework.boot:spring-boot-starter-log4j2")
 
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
