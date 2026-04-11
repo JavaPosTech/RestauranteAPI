@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS usuario (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    login VARCHAR(50) NOT NULL,
+    senha VARCHAR NOT NULL,
+    tipo_usuario VARCHAR(20) NOT NULL,
+    data_alteracao DATE DEFAULT CURRENT_DATE
+);
+
+CREATE TABLE IF NOT EXISTS endereco (
+    id SERIAL PRIMARY KEY,
+    id_usuario INTEGER NOT NULL,
+    rua VARCHAR(50) NOT NULL,
+    cidade VARCHAR(50) NOT NULL,
+    estado VARCHAR(50) NOT NULL,
+    cep VARCHAR(20) NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id) ON DELETE CASCADE
+);
