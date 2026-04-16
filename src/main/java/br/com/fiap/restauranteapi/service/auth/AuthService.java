@@ -31,8 +31,4 @@ public class AuthService {
         usuario.setSenha(passwordEncoder.encode(pAlterarSenhaRequest.senhaNova()));
         return new AlterarSenhaResponse(HttpStatus.OK.value(), "Senha alterada com sucesso!");
     }
-
-    public String gerarSenha(@NotBlank String senha) {
-        return passwordEncoder.encode(senha);
-    }
 }

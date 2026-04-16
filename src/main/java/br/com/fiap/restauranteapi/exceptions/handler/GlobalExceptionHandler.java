@@ -3,8 +3,11 @@ package br.com.fiap.restauranteapi.exceptions.handler;
 import br.com.fiap.restauranteapi.exceptions.InvalidPasswordException;
 import br.com.fiap.restauranteapi.exceptions.LoginNotFoundException;
 import br.com.fiap.restauranteapi.exceptions.dto.ErrorResponseDTO;
+import br.com.fiap.restauranteapi.exceptions.dto.MethodArgumentNotValidResponseDTO;
+import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -33,5 +36,40 @@ public class GlobalExceptionHandler {
                 "Não foi possível alterar a senha, a senha antiga informada não confere com a senha atual do usuário!");
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<?> handleBadRequestException(MethodArgumentNotValidException ex) {
+
+        var erros = ex.getFieldErrors()
+                .stream()
+                .map(MethodArgumentNotValidResponseDTO::new)
+                .toList();
+
+        return ResponseEntity.badRequest().body(erros);
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ErrorResponseDTO> handleBadRequestException(BadRequestException ex) {
+
+        var response = new ErrorResponseDTO(
+                HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.BAD_REQUEST.getReasonPhrase(),
+                "A requisição contém dados inválidos ou inconsistentes!",
+                ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponseDTO> handleInternalServerErrorException(Exception ex) {
+
+        var response = new ErrorResponseDTO(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
+                "Ocorreu um erro interno no Servidor! Por favor, tente novamente.",
+                ex.getLocalizedMessage());
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
 }
