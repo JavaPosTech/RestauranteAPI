@@ -31,18 +31,15 @@ public class AuthController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Senha alterada com sucesso!",
-                    content = @Content(schema = @Schema(implementation = AlterarSenhaResponse.class))
-            ),
+                    content = @Content(schema = @Schema(implementation = AlterarSenhaResponse.class))),
             @ApiResponse(
                     responseCode = "400",
                     description = "Dados inválidos ou senha atual incorreta!",
-                    content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class))
-            ),
+                    content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class))),
             @ApiResponse(
                     responseCode = "404",
                     description = "Usuário não encontrado!",
-                    content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class))
-            ),
+                    content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class))),
             @ApiResponse(
                     responseCode = "500",
                     description = "Erro interno do servidor!",

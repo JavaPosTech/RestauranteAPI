@@ -8,20 +8,20 @@ import java.time.LocalDateTime;
 @Schema(description = "Estrutura padrão para respostas de erro da API")
 public record ErrorResponseDTO(
 
-        @Schema(description = "Código HTTP da resposta", example = "400")
+        @Schema(description = "Código HTTP da resposta")
         int status,
 
-        @Schema(description = "Tipo do erro HTTP", example = "Bad Request")
+        @Schema(description = "Tipo do erro HTTP")
         String error,
 
-        @Schema(description = "Mensagem principal do erro", example = "Dados inválidos na requisição!")
+        @Schema(description = "Mensagem principal do erro")
         String message,
 
-        @Schema(description = "Detalhes adicionais do erro", example = "O campo 'email' é obrigatório!")
+        @Schema(description = "Detalhes adicionais do erro")
         String details,
 
+        @Schema(description = "Data e hora em que o erro ocorreu")
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy - HH:mm:ss")
-        @Schema(description = "Data e hora em que o erro ocorreu", example = "15/04/2026 - 20:50:00")
         LocalDateTime timestamp
 
 ) {
