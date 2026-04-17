@@ -32,8 +32,8 @@ public class GlobalExceptionHandler {
         var response = new ErrorResponseDTO(
                 HttpStatus.BAD_REQUEST.value(),
                 HttpStatus.BAD_REQUEST.getReasonPhrase(),
-                "Senha incorreta!",
-                "Não foi possível alterar a senha, a senha antiga informada não confere com a senha atual do usuário!");
+                "Senha Incorreta!",
+                "Não foi possível alterar a senha, a senha atual informada está incorreta!");
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }

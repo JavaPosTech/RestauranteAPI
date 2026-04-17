@@ -17,6 +17,10 @@ repositories {
 	mavenCentral()
 }
 
+tasks.named<Jar>("jar") {
+	enabled = false
+}
+
 configurations.configureEach {
 	exclude(group = "ch.qos.logback", module = "logback-classic")
 	exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
@@ -40,6 +44,8 @@ dependencies {
 
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
+
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.2")
 
 	testCompileOnly("org.projectlombok:lombok")
 	testAnnotationProcessor("org.projectlombok:lombok")
