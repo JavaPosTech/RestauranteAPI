@@ -4,7 +4,6 @@ import br.com.fiap.restauranteapi.exceptions.InvalidPasswordException;
 import br.com.fiap.restauranteapi.exceptions.LoginNotFoundException;
 import br.com.fiap.restauranteapi.exceptions.dto.ErrorResponseDTO;
 import br.com.fiap.restauranteapi.exceptions.dto.MethodArgumentNotValidResponseDTO;
-import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -51,7 +50,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<ErrorResponseDTO> handleBadRequestException(BadRequestException ex) {
+    public ResponseEntity<ErrorResponseDTO> handleBadRequestException(HttpMessageNotReadableException ex) {
 
         var response = new ErrorResponseDTO(
                 HttpStatus.BAD_REQUEST.value(),

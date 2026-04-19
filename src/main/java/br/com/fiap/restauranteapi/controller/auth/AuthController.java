@@ -1,6 +1,7 @@
 package br.com.fiap.restauranteapi.controller.auth;
 
 import br.com.fiap.restauranteapi.exceptions.dto.ErrorResponseDTO;
+import br.com.fiap.restauranteapi.exceptions.dto.MethodArgumentNotValidResponseDTO;
 import br.com.fiap.restauranteapi.model.request.AlterarSenhaRequest;
 import br.com.fiap.restauranteapi.model.response.AlterarSenhaResponse;
 import br.com.fiap.restauranteapi.service.auth.AuthService;
@@ -35,7 +36,7 @@ public class AuthController {
             @ApiResponse(
                     responseCode = "400",
                     description = "Dados inválidos ou senha atual incorreta!",
-                    content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class))),
+                    content = @Content(schema = @Schema(implementation = MethodArgumentNotValidResponseDTO.class))),
             @ApiResponse(
                     responseCode = "404",
                     description = "Usuário não encontrado!",
