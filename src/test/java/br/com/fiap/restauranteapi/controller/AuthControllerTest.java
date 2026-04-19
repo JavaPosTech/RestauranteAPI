@@ -17,7 +17,7 @@ class AuthControllerTest extends AbstractControllerTest {
     @BeforeEach
     void setUp() throws IOException {
         if (alterarSenhaRequest == null) {
-            alterarSenhaRequest = new String(Files.readAllBytes(Paths.get("src/test/java/resources/auth/alterarSenha.json")));
+            alterarSenhaRequest = new String(Files.readAllBytes(Paths.get("src/test/resources/auth/alterarSenha.json")));
         }
     }
 
