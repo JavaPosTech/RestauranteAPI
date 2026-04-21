@@ -12,7 +12,7 @@ public record AlterarSenhaResponse(
         int status,
 
         @Schema(description = "Mensagem de sucesso", example = "Senha alterada com sucesso!")
-        String message,
+        String mensagem,
 
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy - HH:mm:ss")
         @Schema(description = "Data e hora da resposta", example = "15/04/2026 - 20:45:00")
