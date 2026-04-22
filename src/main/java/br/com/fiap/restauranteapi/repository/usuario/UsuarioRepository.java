@@ -1,4 +1,4 @@
-package br.com.fiap.restauranteapi.repository;
+package br.com.fiap.restauranteapi.repository.usuario;
 
 import br.com.fiap.restauranteapi.model.entity.usuario.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;

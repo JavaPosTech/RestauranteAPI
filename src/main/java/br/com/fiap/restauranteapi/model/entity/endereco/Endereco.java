@@ -1,6 +1,7 @@
 package br.com.fiap.restauranteapi.model.entity.endereco;
 
 import br.com.fiap.restauranteapi.model.entity.usuario.Usuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -16,6 +17,7 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;

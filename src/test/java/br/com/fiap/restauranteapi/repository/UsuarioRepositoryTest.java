@@ -1,6 +1,7 @@
 package br.com.fiap.restauranteapi.repository;
 
 import br.com.fiap.restauranteapi.config.AbstractTest;
+import br.com.fiap.restauranteapi.repository.usuario.UsuarioRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

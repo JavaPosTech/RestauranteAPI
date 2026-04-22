@@ -3,6 +3,7 @@ package br.com.fiap.restauranteapi.model.entity.usuario;
 import br.com.fiap.restauranteapi.model.entity.endereco.Endereco;
 import br.com.fiap.restauranteapi.model.entity.situacao.SituacaoCadastro;
 import br.com.fiap.restauranteapi.model.entity.tipousuario.TipoUsuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -39,11 +40,13 @@ public class Usuario {
     @Column(nullable = false)
     private String senha;
 
+    @JsonIgnore
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_tipousuario", nullable = false)
     private TipoUsuario tipoUsuario;
 
+    @JsonIgnore
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_situacaocadastro", nullable = false)
@@ -53,6 +56,7 @@ public class Usuario {
     @Column(name = "data_alteracao")
     private LocalDate dataAlteracao;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<Endereco> enderecos;
 

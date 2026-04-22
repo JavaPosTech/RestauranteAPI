@@ -24,6 +24,14 @@ class UsuarioServiceTest extends AbstractTest {
 
     @Test
     @Order(2)
+    void getUsuarioByIdTest(){
+        var usuario = usuarioService.getUsuarioById(1);
+        Assertions.assertNotNull(usuario);
+        Assertions.assertEquals(1, usuario.getId());
+    }
+
+    @Test
+    @Order(3)
     void getUsuarioByLoginWithExceptionTest() {
         Assertions.assertThrows(LoginNotFoundException.class, () -> usuarioService.getUsuarioByLogin("loginInexistente"));
     }
