@@ -31,6 +31,10 @@ public interface AuthDocs {
                     description = "Dados inválidos!",
                     content = @Content(schema = @Schema(implementation = MethodArgumentNotValidResponseDTO.class))),
             @ApiResponse(
+                    responseCode = "400",
+                    description = "Senha incorreta!",
+                    content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class))),
+            @ApiResponse(
                     responseCode = "404",
                     description = "Usuário não encontrado!",
                     content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class))),
@@ -52,6 +56,10 @@ public interface AuthDocs {
                     responseCode = "400",
                     description = "Dados inválidos!",
                     content = @Content(schema = @Schema(implementation = MethodArgumentNotValidResponseDTO.class))),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Senha atual incorreta!",
+                    content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class))),
             @ApiResponse(
                     responseCode = "404",
                     description = "Usuário não encontrado!",

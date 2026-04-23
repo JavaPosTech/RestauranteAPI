@@ -4,6 +4,8 @@ import br.com.fiap.restauranteapi.model.request.auth.AlterarSenhaRequest;
 import br.com.fiap.restauranteapi.model.request.auth.LoginRequest;
 import br.com.fiap.restauranteapi.model.response.MensagemSucessoResponse;
 import br.com.fiap.restauranteapi.service.auth.AuthService;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,12 +19,12 @@ public class AuthController implements AuthDocs {
     private final AuthService authService;
 
     @Override
-    public ResponseEntity<MensagemSucessoResponse> login(LoginRequest pLoginRequest) {
+    public ResponseEntity<MensagemSucessoResponse> login(@RequestBody @Valid LoginRequest pLoginRequest) {
         return ResponseEntity.ok(authService.autenticarUsuario(pLoginRequest));
     }
 
     @Override
-    public ResponseEntity<MensagemSucessoResponse> alterarSenha(AlterarSenhaRequest pAlterarSenhaRequest) {
+    public ResponseEntity<MensagemSucessoResponse> alterarSenha(@RequestBody @Valid AlterarSenhaRequest pAlterarSenhaRequest) {
         return ResponseEntity.ok(authService.alterarSenha(pAlterarSenhaRequest));
     }
 }
