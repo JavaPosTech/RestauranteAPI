@@ -1,7 +1,7 @@
 package br.com.fiap.restauranteapi.service.usuario;
 
 import br.com.fiap.restauranteapi.config.AbstractTest;
-import br.com.fiap.restauranteapi.exceptions.LoginNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,13 @@ class UsuarioServiceTest extends AbstractTest {
 
     @Test
     @Order(2)
-    void getUsuarioByIdTest(){
+    void getUsuarioByLoginExceptionTest() {
+        Assertions.assertThrows(EntityNotFoundException.class, () -> usuarioService.getUsuarioByLogin("loginInexistente"));
+    }
+
+    @Test
+    @Order(3)
+    void getUsuarioByIdTest() {
         var usuario = usuarioService.getUsuarioById(1);
 
         Assertions.assertNotNull(usuario);
@@ -33,26 +39,26 @@ class UsuarioServiceTest extends AbstractTest {
     }
 
     @Test
-    @Order(3)
-    void getUsuarioByNomeIgnoreCaseTest() {
-        var usuario = usuarioService.getUsuarioByName(" joão silva ");
-
-        Assertions.assertNotNull(usuario);
-        Assertions.assertEquals("João Silva", usuario.nome());
-    }
-
-    @Test
     @Order(4)
-    void getUsuarioByNomeSemEspacoTest() {
-        var usuario = usuarioService.getUsuarioByName("JoãoSilva");
-        
-        Assertions.assertNotNull(usuario);
-        Assertions.assertEquals("João Silva", usuario.nome());
+    void getUsuarioByIdExceptionTest() {
+        Assertions.assertThrows(EntityNotFoundException.class, () -> usuarioService.getUsuarioById(10));
     }
 
     @Test
     @Order(5)
-    void getUsuarioByLoginWithExceptionTest() {
-        Assertions.assertThrows(LoginNotFoundException.class, () -> usuarioService.getUsuarioByLogin("loginInexistente"));
+    void getUsuarioByNomeTest() {
+        var usuario = usuarioService.getUsuarioByNome("João Silva");
+
+        Assertions.assertNotNull(usuario);
+        Assertions.assertEquals("João Silva", usuario.nome());
+    }
+
+    @Test
+    @Order(6)
+    void getUsuarioByNomeSemEspacoTest() {
+        var usuario = usuarioService.getUsuarioByNome("JoãoSilva");
+
+        Assertions.assertNotNull(usuario);
+        Assertions.assertEquals("João Silva", usuario.nome());
     }
 }

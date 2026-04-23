@@ -11,4 +11,9 @@ class UsuarioControllerTest extends AbstractControllerTest {
     void getUsuarioByIdTest() throws Exception {
         testGet("/v1/usuario/1");
     }
+
+    @Test
+    void getUsuarioByNomeTest() throws Exception {
+        testGet("/v1/usuario?nome=João Silva");
+    }
 }

@@ -1,7 +1,8 @@
-package br.com.fiap.restauranteapi.controller.situacaoCadastro;
+package br.com.fiap.restauranteapi.controller.situacaocadastro;
 
 import br.com.fiap.restauranteapi.model.dto.situacao.SituacaoCadastroDTO;
 import br.com.fiap.restauranteapi.service.situacaocadastro.SituacaoCadastroService;
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ public class SituacaoCadastroController {
 
     private final SituacaoCadastroService situacaoCadastroService;
 
+    @Hidden
     @GetMapping("/{id}")
     public ResponseEntity<SituacaoCadastroDTO> getSituacaoCadastroById(@PathVariable @NotNull Integer id) {
         return ResponseEntity.ok(situacaoCadastroService.getSituacaoCadastroById(id));

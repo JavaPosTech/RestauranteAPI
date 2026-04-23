@@ -1,6 +1,6 @@
 package br.com.fiap.restauranteapi.service.usuario;
 
-import br.com.fiap.restauranteapi.exceptions.LoginNotFoundException;
+import br.com.fiap.restauranteapi.exceptions.UsuarioNotFoundException;
 import br.com.fiap.restauranteapi.model.dto.usuario.UsuarioDTO;
 import br.com.fiap.restauranteapi.model.entity.usuario.Usuario;
 import br.com.fiap.restauranteapi.repository.usuario.UsuarioRepository;
@@ -10,18 +10,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
 
-    public Usuario getUsuarioByLogin(String login) {
-        return usuarioRepository.findByLogin(login).orElseThrow(LoginNotFoundException::new);
+    public Usuario getUsuarioByLogin(String pLogin) {
+        return usuarioRepository.findByLogin(pLogin).orElseThrow(() -> new UsuarioNotFoundException("O Usuário com o login informado não foi encontrado!"));
     }
 
     @Transactional(readOnly = true)
-    public UsuarioDTO getUsuarioById(Integer id) {
-        var usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario não encontrado com o ID: " + id));
+    public UsuarioDTO getUsuarioById(Integer pId) {
+        var usuario = usuarioRepository.getReferenceById(pId);
 
         return new UsuarioDTO(
                 usuario.getId(),
@@ -33,17 +32,15 @@ public class UsuarioService {
     }
 
     @Transactional(readOnly = true)
-    public UsuarioDTO getUsuarioByName(String nome) {
-        String nomeNormalizado = nome.trim();
-        Usuario usuario = usuarioRepository.findByName(nomeNormalizado)
-            .orElseThrow(() -> new RuntimeException("Usuario não encontrado com o nome: " + nomeNormalizado));
+    public UsuarioDTO getUsuarioByNome(String pNome) {
+        var usuario = usuarioRepository.findByNomeContainingIgnoreCase(pNome.trim()).orElseThrow(() -> new UsuarioNotFoundException("O Usuário com o nome informado não foi encontrado!"));
+
         return new UsuarioDTO(
                 usuario.getId(),
                 usuario.getNome(),
                 usuario.getEmail(),
                 usuario.getTipoUsuario().getDescricao(),
                 usuario.getSituacaoCadastro().getDescricao(),
-            usuario.getDataAlteracao()
-        );
+                usuario.getDataAlteracao());
     }
 }

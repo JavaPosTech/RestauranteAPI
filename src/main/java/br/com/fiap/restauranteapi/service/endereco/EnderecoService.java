@@ -1,7 +1,6 @@
 package br.com.fiap.restauranteapi.service.endereco;
 
 import br.com.fiap.restauranteapi.model.dto.endereco.EnderecoDTO;
-import br.com.fiap.restauranteapi.model.entity.endereco.Endereco;
 import br.com.fiap.restauranteapi.repository.endereco.EnderecoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,8 +13,8 @@ public class EnderecoService {
     private final EnderecoRepository enderecoRepository;
 
     @Transactional(readOnly = true)
-    public EnderecoDTO getEnderecoById(Integer id) {
-        var endereco = enderecoRepository.findById(id).orElseThrow(() -> new RuntimeException("Endereço não encontrado com o ID: " + id));
+    public EnderecoDTO getEnderecoById(Integer pId) {
+        var endereco = enderecoRepository.getReferenceById(pId);
 
         return new EnderecoDTO(
                 endereco.getId(),

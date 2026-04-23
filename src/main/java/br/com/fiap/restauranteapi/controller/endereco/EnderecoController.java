@@ -2,6 +2,7 @@ package br.com.fiap.restauranteapi.controller.endereco;
 
 import br.com.fiap.restauranteapi.model.dto.endereco.EnderecoDTO;
 import br.com.fiap.restauranteapi.service.endereco.EnderecoService;
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ public class EnderecoController {
 
     private final EnderecoService enderecoService;
 
+    @Hidden
     @GetMapping("/{id}")
     public ResponseEntity<EnderecoDTO> getEnderecoById(@PathVariable @NotNull Integer id) {
         return ResponseEntity.ok(enderecoService.getEnderecoById(id));

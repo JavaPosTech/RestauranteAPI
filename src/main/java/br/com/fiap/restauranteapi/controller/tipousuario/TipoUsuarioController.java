@@ -1,7 +1,8 @@
-package br.com.fiap.restauranteapi.controller.tipoUsuario;
+package br.com.fiap.restauranteapi.controller.tipousuario;
 
 import br.com.fiap.restauranteapi.model.dto.tipousuario.TipoUsuarioDTO;
 import br.com.fiap.restauranteapi.service.tipousuario.TipoUsuarioService;
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ public class TipoUsuarioController {
 
     private final TipoUsuarioService tipoUsuarioService;
 
+    @Hidden
     @GetMapping("/{id}")
     public ResponseEntity<TipoUsuarioDTO> getTipoUsuarioById(@PathVariable @NotNull Integer id) {
         return ResponseEntity.ok(tipoUsuarioService.getTipoUsuarioById(id));
