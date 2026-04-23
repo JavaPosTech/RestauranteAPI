@@ -2,7 +2,7 @@ package br.com.fiap.restauranteapi.service.auth;
 
 import br.com.fiap.restauranteapi.config.AbstractTest;
 import br.com.fiap.restauranteapi.exceptions.InvalidPasswordException;
-import br.com.fiap.restauranteapi.exceptions.LoginNotFoundException;
+import br.com.fiap.restauranteapi.exceptions.UsuarioNotFoundException;
 import br.com.fiap.restauranteapi.model.request.auth.AlterarSenhaRequest;
 import br.com.fiap.restauranteapi.model.request.auth.LoginRequest;
 import org.junit.jupiter.api.Assertions;
@@ -26,7 +26,7 @@ class AuthServiceTest extends AbstractTest {
     @Test
     @Order(2)
     void autenticarUsuarioLoginExceptionTest() {
-        Assertions.assertThrows(LoginNotFoundException.class, () -> authService.autenticarUsuario(new LoginRequest("loginErrado", "SenhaTeste@2026")));
+        Assertions.assertThrows(UsuarioNotFoundException.class, () -> authService.autenticarUsuario(new LoginRequest("loginErrado", "SenhaTeste@2026")));
     }
 
     @Test
@@ -44,7 +44,7 @@ class AuthServiceTest extends AbstractTest {
     @Test
     @Order(5)
     void alterarSenhaLoginExceptionTest() {
-        Assertions.assertThrows(LoginNotFoundException.class, () -> authService.alterarSenha(new AlterarSenhaRequest("loginErrado", "SenhaTeste@2026", "123456789@")));
+        Assertions.assertThrows(UsuarioNotFoundException.class, () -> authService.alterarSenha(new AlterarSenhaRequest("loginErrado", "SenhaTeste@2026", "123456789@")));
     }
 
     @Test

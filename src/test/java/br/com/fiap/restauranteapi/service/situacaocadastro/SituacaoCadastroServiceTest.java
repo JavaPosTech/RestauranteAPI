@@ -14,9 +14,9 @@ class SituacaoCadastroServiceTest extends AbstractTest {
 
     @Test
     void getSituacaoByIdTest() {
-        var situacaoCadastroById = situacaoCadastroService.getSituacaoCadastroById(1);
+        var situacaoCadastro = situacaoCadastroService.getSituacaoCadastroById(1);
 
-        Assertions.assertNotNull(situacaoCadastroById);
-        Assertions.assertEquals(1, situacaoCadastroById.id());
+        Assertions.assertNotNull(situacaoCadastro);
+        Assertions.assertEquals(1, situacaoCadastro.id());
     }
 }

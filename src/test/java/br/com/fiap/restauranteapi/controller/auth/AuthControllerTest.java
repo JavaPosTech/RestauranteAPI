@@ -28,7 +28,7 @@ class AuthControllerTest extends AbstractControllerTest {
     @Test
     @Order(1)
     void loginTest() throws Exception {
-        testPost("/v1/auth/login", alterarSenhaRequest);
+        testPostStatusOk("/v1/auth/login", loginRequest);
     }
 
     @Test
