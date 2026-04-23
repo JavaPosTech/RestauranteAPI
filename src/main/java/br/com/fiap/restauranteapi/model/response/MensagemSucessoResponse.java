@@ -5,8 +5,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDateTime;
 
-@Schema(description = "Resposta de sucesso para alteração de senha")
-public record AlterarSenhaResponse(
+@Schema(description = "Resposta padrão indicando que a operação foi concluída com sucesso.")
+public record MensagemSucessoResponse(
 
         @Schema(description = "Código HTTP da resposta", example = "200")
         int status,
@@ -19,7 +19,7 @@ public record AlterarSenhaResponse(
         LocalDateTime timestamp
 
 ) {
-    public AlterarSenhaResponse(int pStatus, String pMessage) {
+    public MensagemSucessoResponse(int pStatus, String pMessage) {
         this(pStatus, pMessage, LocalDateTime.now());
     }
 }

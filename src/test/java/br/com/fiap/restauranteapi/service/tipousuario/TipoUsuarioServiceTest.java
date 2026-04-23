@@ -14,11 +14,11 @@ class TipoUsuarioServiceTest extends AbstractTest {
     @Autowired
     private TipoUsuarioService tipoUsuarioService;
 
-     @Test
-        void getTipoUsuarioById() {
-            var tipoUsuario = tipoUsuarioService.getTipoUsuarioById(1);
+    @Test
+    void getTipoUsuarioById() {
+        var tipoUsuario = tipoUsuarioService.getTipoUsuarioById(1);
 
-            assertNotNull(tipoUsuario);
-            assertEquals(1, tipoUsuario.id());
-        }
+        assertNotNull(tipoUsuario);
+        assertEquals(1, tipoUsuario.id());
+    }
 }

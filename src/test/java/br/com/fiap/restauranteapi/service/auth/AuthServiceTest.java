@@ -2,7 +2,9 @@ package br.com.fiap.restauranteapi.service.auth;
 
 import br.com.fiap.restauranteapi.config.AbstractTest;
 import br.com.fiap.restauranteapi.exceptions.InvalidPasswordException;
-import br.com.fiap.restauranteapi.model.request.AlterarSenhaRequest;
+import br.com.fiap.restauranteapi.exceptions.UsuarioNotFoundException;
+import br.com.fiap.restauranteapi.model.request.auth.AlterarSenhaRequest;
+import br.com.fiap.restauranteapi.model.request.auth.LoginRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -17,13 +19,37 @@ class AuthServiceTest extends AbstractTest {
 
     @Test
     @Order(1)
+    void autenticarUsuarioTest() {
+        Assertions.assertDoesNotThrow(() -> authService.autenticarUsuario(new LoginRequest("joao", "SenhaTeste@2026")));
+    }
+
+    @Test
+    @Order(2)
+    void autenticarUsuarioLoginExceptionTest() {
+        Assertions.assertThrows(UsuarioNotFoundException.class, () -> authService.autenticarUsuario(new LoginRequest("loginErrado", "SenhaTeste@2026")));
+    }
+
+    @Test
+    @Order(3)
+    void autenticarUsuarioSenhaExceptionTest() {
+        Assertions.assertThrows(InvalidPasswordException.class, () -> authService.autenticarUsuario(new LoginRequest("joao", "SenhaErrada@2026")));
+    }
+
+    @Test
+    @Order(4)
     void alterarSenhaTest() {
         Assertions.assertDoesNotThrow(() -> authService.alterarSenha(new AlterarSenhaRequest("joao", "SenhaTeste@2026", "123456789@")));
     }
 
     @Test
-    @Order(2)
-    void alterarSenhaWithExceptionTest() {
+    @Order(5)
+    void alterarSenhaLoginExceptionTest() {
+        Assertions.assertThrows(UsuarioNotFoundException.class, () -> authService.alterarSenha(new AlterarSenhaRequest("loginErrado", "SenhaTeste@2026", "123456789@")));
+    }
+
+    @Test
+    @Order(6)
+    void alterarSenhaSenhaExceptionTest() {
         Assertions.assertThrows(InvalidPasswordException.class, () -> authService.alterarSenha(new AlterarSenhaRequest("joao", "SenhaErrada@2026", "123456789@")));
     }
 }
