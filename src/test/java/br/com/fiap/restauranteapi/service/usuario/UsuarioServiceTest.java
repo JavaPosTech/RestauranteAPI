@@ -32,6 +32,22 @@ class UsuarioServiceTest extends AbstractTest {
 
     @Test
     @Order(3)
+    void getUsuarioByNomeIgnoreCaseTest() {
+        var usuario = usuarioService.getUsuarioByNome(" joão silva ");
+        Assertions.assertNotNull(usuario);
+        Assertions.assertEquals("João Silva", usuario.nome());
+    }
+
+    @Test
+    @Order(4)
+    void getUsuarioByNomeSemEspacoTest() {
+        var usuario = usuarioService.getUsuarioByNome("JoãoSilva");
+        Assertions.assertNotNull(usuario);
+        Assertions.assertEquals("João Silva", usuario.nome());
+    }
+
+    @Test
+    @Order(5)
     void getUsuarioByLoginWithExceptionTest() {
         Assertions.assertThrows(LoginNotFoundException.class, () -> usuarioService.getUsuarioByLogin("loginInexistente"));
     }
