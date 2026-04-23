@@ -1,33 +1,49 @@
 package br.com.fiap.restauranteapi.service.auth;
 
 import br.com.fiap.restauranteapi.exceptions.InvalidPasswordException;
-import br.com.fiap.restauranteapi.model.request.AlterarSenhaRequest;
-import br.com.fiap.restauranteapi.model.response.AlterarSenhaResponse;
+import br.com.fiap.restauranteapi.model.entity.usuario.Usuario;
+import br.com.fiap.restauranteapi.model.request.auth.AlterarSenhaRequest;
+import br.com.fiap.restauranteapi.model.request.auth.LoginRequest;
+import br.com.fiap.restauranteapi.model.response.MensagemSucessoResponse;
 import br.com.fiap.restauranteapi.service.usuario.UsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class AuthService {
 
-    @Autowired
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    @Transactional(readOnly = true)
+    public MensagemSucessoResponse autenticarUsuario(LoginRequest pLoginRequest) {
+        var usuario = getUsuarioByLogin(pLoginRequest.login());
+
+        if (!passwordEncoder.matches(pLoginRequest.senha(), usuario.getSenha())) {
+            throw new InvalidPasswordException("A senha informada está incorreta! Por favor, verifique e tente novamente.");
+        }
+
+        return new MensagemSucessoResponse(HttpStatus.OK.value(), "Login realizado com sucesso! Seja bem-vindo ao nosso sistema.");
+    }
 
     @Transactional
-    public AlterarSenhaResponse alterarSenha(AlterarSenhaRequest pAlterarSenhaRequest) {
-        var usuario = usuarioService.getUsuarioByLogin(pAlterarSenhaRequest.login());
+    public MensagemSucessoResponse alterarSenha(AlterarSenhaRequest pAlterarSenhaRequest) {
+        var usuario = getUsuarioByLogin(pAlterarSenhaRequest.login());
 
         if (!passwordEncoder.matches(pAlterarSenhaRequest.senhaAntiga(), usuario.getSenha())) {
-            throw new InvalidPasswordException();
+            throw new InvalidPasswordException("Não foi possível alterar a senha, a senha atual informada está incorreta!");
         }
 
         usuario.setSenha(passwordEncoder.encode(pAlterarSenhaRequest.senhaNova()));
-        return new AlterarSenhaResponse(HttpStatus.OK.value(), "Senha alterada com sucesso!");
+        return new MensagemSucessoResponse(HttpStatus.OK.value(), "Senha alterada com sucesso!");
+    }
+
+    private Usuario getUsuarioByLogin(String pLogin) {
+        return usuarioService.getUsuarioByLogin(pLogin);
     }
 }

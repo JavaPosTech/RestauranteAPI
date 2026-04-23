@@ -27,13 +27,13 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InvalidPasswordException.class)
-    public ResponseEntity<ErrorResponseDTO> handleAuthException() {
+    public ResponseEntity<ErrorResponseDTO> handleAuthException(InvalidPasswordException ex) {
 
         var response = new ErrorResponseDTO(
                 HttpStatus.BAD_REQUEST.value(),
                 HttpStatus.BAD_REQUEST.getReasonPhrase(),
                 "Senha Incorreta!",
-                "Não foi possível alterar a senha, a senha atual informada está incorreta!");
+                ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
