@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Tag(name = "Auth", description = "Endpoints relacionados à autenticação e gerenciamento de credenciais")
 public interface AuthDocs {
 
-    @Operation(summary = "Realizar o login", description = "Permite realizar o login informando login e senha.")
+    @Operation(summary = "Realizar o login", description = "Realiza a autenticação do usuário informando login e senha válidos.")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
