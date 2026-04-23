@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/v1/tipoUsuario")
+@RequestMapping("/v1/tipousuario")
 public class TipoUsuarioController {
 
     private final TipoUsuarioService tipoUsuarioService;
