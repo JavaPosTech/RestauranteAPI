@@ -32,9 +32,9 @@ public class UsuarioController implements UsuarioDocs {
     }
 
     @PostMapping
-    public ResponseEntity<MensagemSucessoResponse> createUser(@RequestBody @Valid Usuario usuario) {
-        var response = usuarioService.createUser(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    public MensagemSucessoResponse createUser(@RequestBody @Valid UsuarioDTO usuario) {
+        MensagemSucessoResponse response = usuarioService.createUser(usuario);
+        return new MensagemSucessoResponse(HttpStatus.OK.value(), "Usuário cadastrado com sucesso.");
     }
 
 }

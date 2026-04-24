@@ -25,6 +25,12 @@ public record UsuarioDTO(
 
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
         @Schema(description = "Data da última alteração do cadastro do Usuário", example = "19/04/2026")
-        LocalDate dataAlteracao
+        LocalDate dataAlteracao,
+
+        @Schema(description = "Login do Usuário", example = "joao_silva")
+        String login,
+
+        @Schema(description = "Senha do Usuário", example = "joao1234")
+        String senha
 
 ) {}
