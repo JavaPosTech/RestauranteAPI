@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class TipoUsuarioService {
@@ -13,8 +15,11 @@ public class TipoUsuarioService {
     private final TipoUsuarioRepository tipoUsuarioRepository;
 
     @Transactional(readOnly = true)
-    public TipoUsuarioDTO getTipoUsuarioById(Integer pId) {
-        var tipoUsuario = tipoUsuarioRepository.getReferenceById(pId);
-        return new TipoUsuarioDTO(tipoUsuario.getId(), tipoUsuario.getDescricao());
+    public List<TipoUsuarioDTO> findAll() {
+        var tipoUsuario = tipoUsuarioRepository.findAll();
+
+        return tipoUsuario.stream()
+                .map(TipoUsuarioDTO::new)
+                .toList();
     }
 }

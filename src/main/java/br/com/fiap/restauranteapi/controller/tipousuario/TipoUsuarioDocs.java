@@ -1,0 +1,26 @@
+package br.com.fiap.restauranteapi.controller.tipousuario;
+
+import br.com.fiap.restauranteapi.model.dto.tipousuario.TipoUsuarioDTO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
+
+@Tag(name = "Tipo Usuário", description = "Endpoints relacionados aos Tipos de Usuários")
+public interface TipoUsuarioDocs {
+
+    @Operation(summary = "Listar tipos de usuário")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Lista de tipos de usuários retornada com sucesso."
+            )
+    })
+    @GetMapping
+    ResponseEntity<List<TipoUsuarioDTO>> getAll();
+
+}

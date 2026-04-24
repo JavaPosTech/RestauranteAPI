@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class TipoUsuarioControllerTest extends AbstractControllerTest {
 
     @Test
-    void getTipoUsuarioByIdTest() throws Exception {
-        testGet("/v1/tipousuario/1");
+    void getAllTest() throws Exception {
+        testGet("/v1/tipousuario");
     }
 }

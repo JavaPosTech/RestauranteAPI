@@ -13,10 +13,8 @@ class EnderecoServiceTest extends AbstractTest {
     private EnderecoService enderecoService;
 
     @Test
-    void getEnderecoByIdTest() {
-        var endereco = enderecoService.getEnderecoById(1);
-
+    void findAllTest() {
+        var endereco = enderecoService.findAll();
         Assertions.assertNotNull(endereco);
-        Assertions.assertEquals(1, endereco.id());
     }
 }

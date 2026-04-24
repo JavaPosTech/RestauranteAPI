@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class SituacaoCadastroControllerTest extends AbstractControllerTest {
 
     @Test
-    void getSituacaoCadastroByIdTest() throws Exception {
-        testGet("/v1/situacaocadastro/1");
+    void getAllTest() throws Exception {
+        testGet("/v1/situacaocadastro");
     }
 }

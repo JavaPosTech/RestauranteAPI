@@ -15,7 +15,7 @@ public record AlterarSenhaRequest(
         @Schema(description = "Senha atual do Usuário", example = "senhaAntiga123")
         String senhaAntiga,
 
-        @NotBlank(message = "A campo 'senhaNova' é obrigatório!")
+        @NotBlank(message = "O campo 'senhaNova' é obrigatório!")
         @Size(min = 10, message = "A nova senha deve ter no mínimo 10 caracteres!")
         @Schema(description = "Nova senha do Usuário", example = "novaSenha@123", minLength = 10)
         String senhaNova

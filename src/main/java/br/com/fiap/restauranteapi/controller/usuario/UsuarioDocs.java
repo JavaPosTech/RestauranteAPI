@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Tag(name = "Usuário", description = "Endpoints relacionados ao gerenciamento de usuários")
+@Tag(name = "Usuário", description = "Endpoints relacionados ao gerenciamento de Usuários")
 public interface UsuarioDocs {
 
     @Operation(summary = "Buscar usuário por nome", description = "Retorna os dados de um usuário a partir do nome informado como parâmetro na URL.")

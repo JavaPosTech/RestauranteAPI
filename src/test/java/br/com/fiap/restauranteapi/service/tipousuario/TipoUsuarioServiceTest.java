@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
@@ -15,10 +14,8 @@ class TipoUsuarioServiceTest extends AbstractTest {
     private TipoUsuarioService tipoUsuarioService;
 
     @Test
-    void getTipoUsuarioById() {
-        var tipoUsuario = tipoUsuarioService.getTipoUsuarioById(1);
-
+    void findAllTest() {
+        var tipoUsuario = tipoUsuarioService.findAll();
         assertNotNull(tipoUsuario);
-        assertEquals(1, tipoUsuario.id());
     }
 }

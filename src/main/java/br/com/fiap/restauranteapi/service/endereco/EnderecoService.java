@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class EnderecoService {
@@ -13,17 +15,11 @@ public class EnderecoService {
     private final EnderecoRepository enderecoRepository;
 
     @Transactional(readOnly = true)
-    public EnderecoDTO getEnderecoById(Integer pId) {
-        var endereco = enderecoRepository.getReferenceById(pId);
+    public List<EnderecoDTO> findAll() {
+        var endereco = enderecoRepository.findAll();
 
-        return new EnderecoDTO(
-                endereco.getId(),
-                endereco.getUsuario().getNome(),
-                endereco.getRua(),
-                endereco.getCidade(),
-                endereco.getEstado(),
-                endereco.getComplemento(),
-                endereco.getPontoReferencia(),
-                endereco.getCep());
+        return endereco.stream()
+                .map(EnderecoDTO::new)
+                .toList();
     }
 }
