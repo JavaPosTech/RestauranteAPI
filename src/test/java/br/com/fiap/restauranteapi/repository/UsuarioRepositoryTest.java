@@ -33,6 +33,12 @@ class UsuarioRepositoryTest extends AbstractTest {
 
     @Test
     void existsByEmailIgnoreCaseTest() {
-        Assertions.assertDoesNotThrow(() -> usuarioRepository.existsByEmailIgnoreCase("joao@email.com"));
+        var emailExistente = Assertions.assertDoesNotThrow(
+                () -> usuarioRepository.existsByEmailIgnoreCase("joao@email.com"));
+        var emailInexistente = Assertions.assertDoesNotThrow(
+                () -> usuarioRepository.existsByEmailIgnoreCase("inexistente@email.com"));
+
+        Assertions.assertTrue(emailExistente);
+        Assertions.assertFalse(emailInexistente);
     }
 }
