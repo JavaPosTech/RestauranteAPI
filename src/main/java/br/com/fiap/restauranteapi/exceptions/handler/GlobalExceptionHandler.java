@@ -138,12 +138,12 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponseDTO> handleInternalServerErrorException(HttpServletRequest pHttpServletRequest) {
+    public ResponseEntity<ErrorResponseDTO> handleInternalServerErrorException(Exception ex, HttpServletRequest pHttpServletRequest) {
 
         var response = new ErrorResponseDTO(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 "Erro Interno no Servidor!",
-                "Ocorreu um erro interno no servidor! Por favor, tente novamente.",
+                ex.getMessage(),
                 pHttpServletRequest.getRequestURI());
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
