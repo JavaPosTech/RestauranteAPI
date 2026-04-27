@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "Modelo de resposta com os dados de Endereço do Usuário")
 public record EnderecoDTO(
 
-        @Schema(description = "ID do endereço")
+        @Schema(description = "Identificador único do endereço")
         Integer id,
 
         @Schema(description = "Nome do usuário proprietário do endereço")

@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "Modelo de resposta com os dados de Situação de Cadastro")
 public record SituacaoCadastroDTO(
 
-        @Schema(description = "ID da situação de cadastro")
+        @Schema(description = "Identificador único da situação de cadastro")
         Integer id,
 
         @Schema(description = "Descrição da situação de cadastro")

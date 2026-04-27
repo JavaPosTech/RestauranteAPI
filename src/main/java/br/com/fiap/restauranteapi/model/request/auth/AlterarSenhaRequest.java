@@ -13,7 +13,7 @@ public record AlterarSenhaRequest(
         String login,
 
         @NotBlank(message = "O campo 'senhaAtual' é obrigatório!")
-        @Schema(description = "Senha atual do usuário", example = "senhaAntiga123")
+        @Schema(description = "Senha atual do usuário", example = "senhaAtual@123")
         @Size(min = 12, message = "A senha atual deve ter no mínimo 12 caracteres!")
         String senhaAtual,
 

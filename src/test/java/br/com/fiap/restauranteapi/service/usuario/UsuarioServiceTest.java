@@ -2,7 +2,7 @@ package br.com.fiap.restauranteapi.service.usuario;
 
 import br.com.fiap.restauranteapi.config.AbstractTest;
 import br.com.fiap.restauranteapi.exceptions.UsuarioNotFoundException;
-import br.com.fiap.restauranteapi.model.dto.usuario.CreateUsuarioDTO;
+import br.com.fiap.restauranteapi.model.request.usuario.CreateUsuarioRequest;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
@@ -113,7 +113,7 @@ class UsuarioServiceTest extends AbstractTest {
         Assertions.assertThrows(DataIntegrityViolationException.class, () -> usuarioService.salvarUsuario(loginDuplicado));
     }
 
-    private CreateUsuarioDTO buildUsuario(String nome, String email, String login, String senha, Integer tipoUsuario) {
-        return new CreateUsuarioDTO(nome, email, login, senha, tipoUsuario);
+    private CreateUsuarioRequest buildUsuario(String nome, String email, String login, String senha, Integer tipoUsuario) {
+        return new CreateUsuarioRequest(nome, email, login, senha, tipoUsuario);
     }
 }

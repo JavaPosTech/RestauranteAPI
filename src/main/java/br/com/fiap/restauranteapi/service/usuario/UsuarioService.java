@@ -2,7 +2,7 @@ package br.com.fiap.restauranteapi.service.usuario;
 
 import br.com.fiap.restauranteapi.enums.ESituacaoCadastro;
 import br.com.fiap.restauranteapi.exceptions.UsuarioNotFoundException;
-import br.com.fiap.restauranteapi.model.dto.usuario.CreateUsuarioDTO;
+import br.com.fiap.restauranteapi.model.request.usuario.CreateUsuarioRequest;
 import br.com.fiap.restauranteapi.model.dto.usuario.UsuarioDTO;
 import br.com.fiap.restauranteapi.model.dto.usuario.UsuarioMapper;
 import br.com.fiap.restauranteapi.model.entity.usuario.Usuario;
@@ -64,18 +64,18 @@ public class UsuarioService {
     }
 
     @Transactional
-    public MensagemSucessoResponse salvarUsuario(CreateUsuarioDTO pCreateUsuarioDTO) {
-        if (usuarioRepository.existsByEmailIgnoreCase(pCreateUsuarioDTO.email())) {
+    public MensagemSucessoResponse salvarUsuario(CreateUsuarioRequest pCreateUsuarioRequest) {
+        if (usuarioRepository.existsByEmailIgnoreCase(pCreateUsuarioRequest.email())) {
             throw new DataIntegrityViolationException("O E-mail informado já está cadastrado no sistema!");
         }
 
-        if (usuarioRepository.existsByLoginIgnoreCase(pCreateUsuarioDTO.login())) {
+        if (usuarioRepository.existsByLoginIgnoreCase(pCreateUsuarioRequest.login())) {
             throw new DataIntegrityViolationException("O Login informado já está cadastrado no sistema!");
         }
 
-        var usuario = usuarioMapper.fromCreateDTOToEntity(pCreateUsuarioDTO);
-        usuario.setSenha(passwordService.encriptografarSenha(pCreateUsuarioDTO.senha()));
-        usuario.setTipoUsuario(tipoUsuarioRepository.getReferenceById(pCreateUsuarioDTO.tipoUsuario()));
+        var usuario = usuarioMapper.fromCreateDTOToEntity(pCreateUsuarioRequest);
+        usuario.setSenha(passwordService.encriptografarSenha(pCreateUsuarioRequest.senha()));
+        usuario.setTipoUsuario(tipoUsuarioRepository.getReferenceById(pCreateUsuarioRequest.tipoUsuario()));
         usuario.setSituacaoCadastro(situacaoCadastroRepository.getReferenceById(ESituacaoCadastro.ATIVO.getCodigo()));
 
         usuarioRepository.save(usuario);

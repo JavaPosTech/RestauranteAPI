@@ -2,6 +2,7 @@ package br.com.fiap.restauranteapi.exceptions.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.net.URI;
@@ -23,12 +24,13 @@ public record ErrorResponseDTO(
         @Schema(description = "Endpoint onde ocorreu o erro")
         String instance,
 
-        @Schema(description = "Data e hora em que o erro ocorreu")
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy - HH:mm:ss")
-        LocalDateTime timestamp,
-
+        @JsonProperty("exception")
         @Schema(description = "Lista de erros de validação")
-        Object errors
+        Object errors,
+
+        @Schema(description = "Data e hora em que o erro ocorreu", example = "25/12/2024 - 14:30:00")
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy - HH:mm:ss")
+        LocalDateTime timestamp
 
 ) {
     public ErrorResponseDTO(int pStatus, String pTitle, String pDetails, String pInstance) {
@@ -36,6 +38,6 @@ public record ErrorResponseDTO(
     }
 
     public ErrorResponseDTO(int pStatus, String pTitle, String pDetails, String pInstance, Object pErrors) {
-        this(pStatus, pTitle, pDetails, pInstance, LocalDateTime.now(), pErrors);
+        this(pStatus, pTitle, pDetails, pInstance, pErrors, LocalDateTime.now());
     }
 }
