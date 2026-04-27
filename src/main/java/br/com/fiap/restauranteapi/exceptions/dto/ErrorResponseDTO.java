@@ -2,7 +2,6 @@ package br.com.fiap.restauranteapi.exceptions.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.net.URI;
@@ -19,12 +18,11 @@ public record ErrorResponseDTO(
         String title,
 
         @Schema(description = "Detalhes adicionais do erro")
-        String details,
+        String detail,
 
         @Schema(description = "Endpoint onde ocorreu o erro")
-        String instance,
+        URI instance,
 
-        @JsonProperty("exception")
         @Schema(description = "Lista de erros de validação")
         Object errors,
 
@@ -34,10 +32,10 @@ public record ErrorResponseDTO(
 
 ) {
     public ErrorResponseDTO(int pStatus, String pTitle, String pDetails, String pInstance) {
-        this(pStatus, pTitle, pDetails, String.valueOf(URI.create(pInstance)), null, LocalDateTime.now());
+        this(pStatus, pTitle, pDetails, URI.create(pInstance), null, LocalDateTime.now());
     }
 
     public ErrorResponseDTO(int pStatus, String pTitle, String pDetails, String pInstance, Object pErrors) {
-        this(pStatus, pTitle, pDetails, pInstance, pErrors, LocalDateTime.now());
+        this(pStatus, pTitle, pDetails, URI.create(pInstance), pErrors, LocalDateTime.now());
     }
 }

@@ -71,7 +71,7 @@ public class GlobalExceptionHandler {
         var response = new ErrorResponseDTO(
                 HttpStatus.BAD_REQUEST.value(),
                 "Parâmetros Inválidos!",
-                "Verifique os dados informados na requisição e tenta novamente.",
+                "Verifique os dados informados na requisição e tente novamente.",
                 pHttpServletRequest.getRequestURI());
 
         return ResponseEntity.badRequest().body(response);
