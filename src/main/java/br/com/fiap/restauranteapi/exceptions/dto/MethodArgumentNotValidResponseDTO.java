@@ -6,9 +6,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public record MethodArgumentNotValidResponseDTO(
 
         @Schema(description = "Campo que causou o erro de validação")
-        String field,
+        String campo,
 
         @Schema(description = "Mensagem de erro de validação")
-        String message
+        String mensagem
 
 ) {}

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Pageable;
 
 @SpringBootTest
 class EnderecoServiceTest extends AbstractTest {
@@ -14,7 +15,7 @@ class EnderecoServiceTest extends AbstractTest {
 
     @Test
     void findAllTest() {
-        var endereco = enderecoService.findAll();
+        var endereco = enderecoService.findAll(Pageable.unpaged());
         Assertions.assertNotNull(endereco);
     }
 }

@@ -2,11 +2,11 @@ package br.com.fiap.restauranteapi.service.usuario;
 
 import br.com.fiap.restauranteapi.enums.ESituacaoCadastro;
 import br.com.fiap.restauranteapi.exceptions.UsuarioNotFoundException;
-import br.com.fiap.restauranteapi.model.request.usuario.CreateUsuarioRequest;
 import br.com.fiap.restauranteapi.model.dto.usuario.UsuarioDTO;
 import br.com.fiap.restauranteapi.model.dto.usuario.UsuarioMapper;
 import br.com.fiap.restauranteapi.model.entity.usuario.Usuario;
-import br.com.fiap.restauranteapi.model.response.MensagemSucessoResponse;
+import br.com.fiap.restauranteapi.model.request.usuario.CreateUsuarioRequest;
+import br.com.fiap.restauranteapi.model.response.success.MensagemSucessoResponse;
 import br.com.fiap.restauranteapi.repository.situacaocadastro.SituacaoCadastroRepository;
 import br.com.fiap.restauranteapi.repository.tipousuario.TipoUsuarioRepository;
 import br.com.fiap.restauranteapi.repository.usuario.UsuarioRepository;
@@ -33,20 +33,6 @@ public class UsuarioService {
 
     public Usuario getUsuarioByLogin(String pLogin) {
         return usuarioRepository.findByLogin(pLogin).orElseThrow(() -> new UsuarioNotFoundException("O Usuário com o login informado não foi encontrado!"));
-    }
-
-    @Transactional(readOnly = true)
-    public UsuarioDTO getUsuarioById(Integer pId) {
-        var usuario = usuarioRepository.getReferenceById(pId);
-
-        return new UsuarioDTO(
-                usuario.getId(),
-                usuario.getNome(),
-                usuario.getEmail(),
-                usuario.getLogin(),
-                usuario.getTipoUsuario().getDescricao(),
-                usuario.getSituacaoCadastro().getDescricao(),
-                usuario.getDataAlteracao());
     }
 
     @Transactional(readOnly = true)

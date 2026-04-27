@@ -3,9 +3,7 @@ package br.com.fiap.restauranteapi.service.usuario;
 import br.com.fiap.restauranteapi.config.AbstractTest;
 import br.com.fiap.restauranteapi.exceptions.UsuarioNotFoundException;
 import br.com.fiap.restauranteapi.model.request.usuario.CreateUsuarioRequest;
-import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +16,6 @@ class UsuarioServiceTest extends AbstractTest {
     private UsuarioService usuarioService;
 
     @Test
-    @Order(1)
     void getUsuarioByLoginTest() {
         var usuario = usuarioService.getUsuarioByLogin("joao_user01");
 
@@ -27,28 +24,11 @@ class UsuarioServiceTest extends AbstractTest {
     }
 
     @Test
-    @Order(2)
     void getUsuarioByLoginExceptionTest() {
         Assertions.assertThrows(UsuarioNotFoundException.class, () -> usuarioService.getUsuarioByLogin("loginInexistente"));
     }
 
     @Test
-    @Order(3)
-    void getUsuarioByIdTest() {
-        var usuario = usuarioService.getUsuarioById(1);
-
-        Assertions.assertNotNull(usuario);
-        Assertions.assertEquals(1, usuario.id());
-    }
-
-    @Test
-    @Order(4)
-    void getUsuarioByIdExceptionTest() {
-        Assertions.assertThrows(EntityNotFoundException.class, () -> usuarioService.getUsuarioById(10));
-    }
-
-    @Test
-    @Order(5)
     void getUsuarioByNomeTest() {
         var usuario = usuarioService.getUsuarioByNome("João Silva");
 
@@ -57,7 +37,6 @@ class UsuarioServiceTest extends AbstractTest {
     }
 
     @Test
-    @Order(6)
     void getUsuarioByNomeSemEspacoTest() {
         var usuario = usuarioService.getUsuarioByNome("JoãoSilva");
 
@@ -66,13 +45,11 @@ class UsuarioServiceTest extends AbstractTest {
     }
 
     @Test
-    @Order(7)
     void getUsuarioByNomeExceptionTest() {
         Assertions.assertThrows(UsuarioNotFoundException.class, () -> usuarioService.getUsuarioByNome("Nome Inexistente"));
     }
 
     @Test
-    @Order(8)
     void salvarUsuarioTest() {
 
         var createUsuarioDTO = buildUsuario(
@@ -86,7 +63,6 @@ class UsuarioServiceTest extends AbstractTest {
     }
 
     @Test
-    @Order(9)
     void salvarUsuarioEmailDuplicadoTest() {
 
         var emailDuplicado = buildUsuario(
@@ -100,7 +76,6 @@ class UsuarioServiceTest extends AbstractTest {
     }
 
     @Test
-    @Order(10)
     void salvarUsuarioLoginDuplicadoTest() {
 
         var loginDuplicado = buildUsuario(

@@ -34,7 +34,7 @@ public record ErrorResponseDTO(
 
 ) {
     public ErrorResponseDTO(int pStatus, String pTitle, String pDetails, String pInstance) {
-        this(pStatus, pTitle, pDetails, String.valueOf(URI.create(pInstance)), LocalDateTime.now(), null);
+        this(pStatus, pTitle, pDetails, String.valueOf(URI.create(pInstance)), null, LocalDateTime.now());
     }
 
     public ErrorResponseDTO(int pStatus, String pTitle, String pDetails, String pInstance, Object pErrors) {

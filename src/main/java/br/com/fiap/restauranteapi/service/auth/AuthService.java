@@ -4,7 +4,7 @@ import br.com.fiap.restauranteapi.exceptions.InvalidPasswordException;
 import br.com.fiap.restauranteapi.model.entity.usuario.Usuario;
 import br.com.fiap.restauranteapi.model.request.auth.AlterarSenhaRequest;
 import br.com.fiap.restauranteapi.model.request.auth.LoginRequest;
-import br.com.fiap.restauranteapi.model.response.MensagemSucessoResponse;
+import br.com.fiap.restauranteapi.model.response.success.MensagemSucessoResponse;
 import br.com.fiap.restauranteapi.service.usuario.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -25,9 +25,15 @@ spring:
     enabled: true
     baseline-on-migrate: true
 
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+
   web:
     error:
       include-stacktrace: never
+
 ---
 
 spring:

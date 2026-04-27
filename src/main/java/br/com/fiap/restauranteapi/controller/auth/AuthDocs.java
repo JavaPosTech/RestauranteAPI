@@ -3,7 +3,7 @@ package br.com.fiap.restauranteapi.controller.auth;
 import br.com.fiap.restauranteapi.exceptions.dto.ErrorResponseDTO;
 import br.com.fiap.restauranteapi.model.request.auth.AlterarSenhaRequest;
 import br.com.fiap.restauranteapi.model.request.auth.LoginRequest;
-import br.com.fiap.restauranteapi.model.response.MensagemSucessoResponse;
+import br.com.fiap.restauranteapi.model.response.success.MensagemSucessoResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
