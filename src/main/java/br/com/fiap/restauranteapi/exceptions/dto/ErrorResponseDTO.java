@@ -1,31 +1,44 @@
 package br.com.fiap.restauranteapi.exceptions.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.net.URI;
 import java.time.LocalDateTime;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Schema(description = "Estrutura genérica para respostas de erro da API")
 public record ErrorResponseDTO(
 
-        @Schema(description = "Código HTTP da resposta")
+        @Schema(description = "Código HTTP")
         int status,
 
-        @Schema(description = "Tipo do erro HTTP")
-        String error,
+        @Schema(description = "Título resumido")
+        String title,
 
-        @Schema(description = "Mensagem principal do erro")
-        String message,
+        @Schema(description = "Endpoint da requisição")
+        String instance,
 
-        @Schema(description = "Detalhes adicionais do erro")
-        String details,
+        @Schema(description = "URI identificadora do tipo de erro")
+        URI type,
 
-        @Schema(description = "Data e hora em que o erro ocorreu")
+        @Schema(description = "Mensagem detalhada")
+        String detail,
+
+        @Schema(description = "Erros relacionados à requisição")
+        Object errors,
+
+        @Schema(description = "Data e hora do erro")
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy - HH:mm:ss")
         LocalDateTime timestamp
 
 ) {
-    public ErrorResponseDTO(int pStatus, String pError, String pMessage, String pDetails) {
-        this(pStatus, pError, pMessage, pDetails, LocalDateTime.now());
+    public ErrorResponseDTO(int pStatus, String pTitle, String pInstance, String pType, String pDetail, Object pErrors) {
+        this(pStatus, pTitle, pInstance, URI.create(pType), pDetail, pErrors, LocalDateTime.now());
+    }
+
+    public ErrorResponseDTO(int pStatus, String pTitle, String pInstance, String pType, String pDetail) {
+        this(pStatus, pTitle, pInstance, URI.create(pType), pDetail, null, LocalDateTime.now());
     }
 }

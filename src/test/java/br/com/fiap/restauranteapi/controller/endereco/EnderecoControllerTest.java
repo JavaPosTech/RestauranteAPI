@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class EnderecoControllerTest extends AbstractControllerTest {
 
     @Test
-    void getEnderecoByIdTest() throws Exception {
-        testGet("/v1/endereco/1");
+    void getAllTest() throws Exception {
+        testGet("/v1/endereco");
     }
 }

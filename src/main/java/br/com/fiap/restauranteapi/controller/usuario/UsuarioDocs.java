@@ -1,9 +1,9 @@
 package br.com.fiap.restauranteapi.controller.usuario;
 
 import br.com.fiap.restauranteapi.exceptions.dto.ErrorResponseDTO;
-import br.com.fiap.restauranteapi.model.dto.usuario.CreateUsuarioDTO;
 import br.com.fiap.restauranteapi.model.dto.usuario.UsuarioDTO;
-import br.com.fiap.restauranteapi.model.response.MensagemSucessoResponse;
+import br.com.fiap.restauranteapi.model.request.usuario.CriarUsuarioRequest;
+import br.com.fiap.restauranteapi.model.response.success.MensagemSucessoResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Tag(name = "Usuário", description = "Endpoints relacionados ao gerenciamento de usuários")
+@Tag(name = "Usuário", description = "Endpoints relacionados ao gerenciamento de Usuários")
 public interface UsuarioDocs {
 
     @Operation(summary = "Buscar usuário por nome", description = "Retorna os dados de um usuário a partir do nome informado como parâmetro na URL.")
@@ -30,7 +30,7 @@ public interface UsuarioDocs {
                     content = @Content(schema = @Schema(implementation = UsuarioDTO.class))),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Parâmetro nome inválido ou não informado!",
+                    description = "Dados inválidos na requisição!",
                     content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class))),
             @ApiResponse(
                     responseCode = "404",
@@ -65,6 +65,6 @@ public interface UsuarioDocs {
                     content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class)))
     })
     @PostMapping
-    ResponseEntity<MensagemSucessoResponse> cadastrarUsuario(@RequestBody @Valid CreateUsuarioDTO createUsuarioDTO);
+    ResponseEntity<MensagemSucessoResponse> cadastrarUsuario(@RequestBody @Valid CriarUsuarioRequest criarUsuarioRequest);
 
 }

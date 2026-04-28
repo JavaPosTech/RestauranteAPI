@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class SituacaoCadastroService {
@@ -13,8 +15,11 @@ public class SituacaoCadastroService {
     private final SituacaoCadastroRepository situacaoCadastroRepository;
 
     @Transactional(readOnly = true)
-    public SituacaoCadastroDTO getSituacaoCadastroById(Integer pId) {
-        var situacaoCadastro = situacaoCadastroRepository.getReferenceById(pId);
-        return new SituacaoCadastroDTO(situacaoCadastro.getId(), situacaoCadastro.getDescricao());
+    public List<SituacaoCadastroDTO> findAll() {
+        var situacoesCadastro  = situacaoCadastroRepository.findAll();
+
+        return situacoesCadastro .stream()
+                .map(SituacaoCadastroDTO::new)
+                .toList();
     }
 }
