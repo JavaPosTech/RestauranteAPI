@@ -10,7 +10,7 @@
 
  <br> <br> 
 
-## 🚀 Ferramentas Utilizadas
+## 🧰 Ferramentas Utilizadas
 
 * 🛠️ Gradle
 
@@ -46,7 +46,32 @@ Para iniciar o PostgreSQL, execute no terminal:
 docker compose -f docker-compose-postgres.yml up -d
 ```
 
-Em seguida, execute a aplicação utilizando a opção `BootRun - DEV`. Dessa forma, a API será conectada automaticamente ao banco de dados configurado no Docker Compose, facilitando a execução do projeto em ambiente local.
+Em seguida, execute a aplicação utilizando a opção `BootRun - DEV`.Dessa forma, a API será conectada automaticamente ao banco de dados configurado no Docker Compose, facilitando a execução do projeto em ambiente local e ficando disponível na porta 9017.
+
+<br> 
+
+## 🚀 Produção
+
+Para execução em ambiente de produção, o projeto disponibiliza o arquivo `docker-compose-restauranteapi.yml`. Antes de iniciar a aplicação, é necessário configurar o arquivo `.env` com as variáveis de conexão do banco de dados, conforme o ambiente desejado:
+
+```bash
+# DATABASE_NAME
+$ Exemplo: postgres
+
+# DATABASE_USER
+$ Exemplo: postgres
+
+# DATABASE_PASSWORD
+$ Exemplo: postgres@2026
+```
+
+Após configuraro arquivo `.env` com as variáveis de conexão do banco de dados desejadas, execute no terminal:
+
+```bash
+docker compose -f docker-compose-restauranteapi.yml up -d
+```
+
+Dessa forma, a API será iniciada utilizando as variáveis definidas no arquivo .env e ficará disponível na porta 9027.
 
 <br> 
 
