@@ -5,7 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.7"
 }
 
-version = "0.0.1"
+version = "1.0.0"
 group = "br.com.fiap"
 
 java {
