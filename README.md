@@ -79,7 +79,7 @@ Dessa forma, a API será iniciada utilizando as variáveis definidas no arquivo 
 
 ## 📑 Swagger
 
-Para acessar a documentação da API, inicie a aplicação e acesse o link abaixo no seu navegador.
+Para acessar a documentação da API, inicie a aplicação utilizando a opção `BootRun - DEV` e acesse o link abaixo no seu navegador.
 
 ```bash
 # URL para acessar a documentação da API 
