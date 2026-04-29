@@ -55,7 +55,7 @@ Em seguida, execute a aplicação utilizando a opção `BootRun - DEV`. Dessa fo
 Para execução em ambiente de produção, o projeto disponibiliza o arquivo `docker-compose-restauranteapi.yml`. Antes de iniciar a aplicação, é necessário configurar o arquivo `.env` com as variáveis de conexão do banco de dados, conforme o ambiente desejado:
 
 ```bash
-# DATABASE__PORT
+# DATABASE_PORT
 $ Exemplo: 5432
 
 # DATABASE_NAME
