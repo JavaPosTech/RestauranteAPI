@@ -55,6 +55,9 @@ Em seguida, execute a aplicação utilizando a opção `BootRun - DEV`. Dessa fo
 Para execução em ambiente de produção, o projeto disponibiliza o arquivo `docker-compose-restauranteapi.yml`. Antes de iniciar a aplicação, é necessário configurar o arquivo `.env` com as variáveis de conexão do banco de dados, conforme o ambiente desejado:
 
 ```bash
+# DATABASE__PORT
+$ Exemplo: 5432
+
 # DATABASE_NAME
 $ Exemplo: postgres
 
@@ -64,6 +67,28 @@ $ Exemplo: postgres
 # DATABASE_PASSWORD
 $ Exemplo: postgres@2026
 ```
+
+> ℹ️ Importante: a variável `DATABASE__PORT` representa a porta utilizada pela aplicação para se conectar ao banco de dados dentro da rede interna do Docker.
+O valor padrão é `5432`. Caso deseje alterar essa porta no arquivo  `.env`, também será necessário ajustar o arquivo `docker-compose-restauranteapi.yml`, atualizando a porta interna do container PostgreSQL para o mesmo valor configurado.
+
+```yaml
+ports:
+  - "8745:5432"
+```
+
+Se alterar `DATABASE__PORT` para `5433`, o mapeamento deverá ser ajustado para:
+
+```yaml
+ports:
+  - "8745:5433"
+```
+
+Nesse exemplo:
+
+* `8745` = porta externa utilizada pelo host para acessar o banco
+* `5432` ou `5433` = porta interna utilizada pela API para se conectar ao PostgreSQL
+
+<br> 
 
 Após configurar o arquivo `.env` com as variáveis de conexão do banco de dados, execute no terminal:
 
