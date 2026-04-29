@@ -19,3 +19,23 @@
 * 🐘 Postgres 
 
 * 🟢 Spring Boot 4.0.5
+
+<br> 
+
+## ⚠️ Observação
+
+Recomenda-se utilizar o IntelliJ IDEA como IDE para este projeto, pois ele já possui configurações prontas para execução e build, como `BootRun - DEV`, `BootRun - PROD` e `Clean Build - [Without Tests]`. Dessa forma, o uso do IntelliJ proporciona uma experiência mais prática e otimizada no desenvolvimento.
+
+<br> 
+
+## 🛠️ Desenvolvimento 
+
+Para o ambiente de desenvolvimento, o projeto disponibiliza o arquivo `docker-compose-postgres.yml`, já configurado com todas as variáveis necessárias para conexão com o banco de dados. 
+
+Para iniciar o PostgreSQL, execute no terminal: 
+
+```bash
+docker compose -f docker-compose-postgres.yml up -d
+```
+
+Em seguida, execute a aplicação utilizando a opção `BootRun - DEV`. Dessa forma, a API será conectada automaticamente ao banco de dados configurado no Docker Compose, facilitando a execução do projeto em ambiente local.
