@@ -40,13 +40,13 @@
 
 Para o ambiente de desenvolvimento, o projeto disponibiliza o arquivo `docker-compose-postgres.yml`, já configurado com todas as variáveis necessárias para conexão com o banco de dados. 
 
-Para iniciar o PostgreSQL, execute no terminal: 
+Para iniciar o serviço do PostgreSQL, execute no terminal: 
 
 ```bash
 docker compose -f docker-compose-postgres.yml up -d
 ```
 
-Em seguida, execute a aplicação utilizando a opção `BootRun - DEV`.Dessa forma, a API será conectada automaticamente ao banco de dados configurado no Docker Compose, facilitando a execução do projeto em ambiente local e ficando disponível na porta 9017.
+Em seguida, execute a aplicação utilizando a opção `BootRun - DEV`. Dessa forma, a API será conectada automaticamente ao banco de dados configurado no Docker Compose, facilitando a execução do projeto em ambiente local e ficando disponível na porta 9017.
 
 <br> 
 
