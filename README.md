@@ -77,6 +77,17 @@ Dessa forma, a API será iniciada utilizando as variáveis definidas no arquivo 
 
 <br> 
 
+## 📑 Swagger
+
+Para acessar a documentação da API, inicie a aplicação e acesse o link abaixo no seu navegador.
+
+```bash
+# URL para acessar a documentação da API 
+$ http://localhost:9017/RestauranteAPI/swagger-ui/index.html
+```
+
+<br> 
+
 ## ⚠️ Observação
 
 Recomenda-se utilizar o IntelliJ IDEA como IDE para este projeto, pois ele já possui configurações prontas para execução e build, como `BootRun - DEV`, `BootRun - PROD` e `Clean Build - [Without Tests]`. Dessa forma, o uso do IntelliJ proporciona uma experiência mais prática e otimizada no desenvolvimento.
