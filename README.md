@@ -65,7 +65,7 @@ $ Exemplo: postgres
 $ Exemplo: postgres@2026
 ```
 
-Após configuraro arquivo `.env` com as variáveis de conexão do banco de dados, execute no terminal:
+Após configurar o arquivo `.env` com as variáveis de conexão do banco de dados, execute no terminal:
 
 ```bash
 docker compose -f docker-compose-restauranteapi.yml up -d
