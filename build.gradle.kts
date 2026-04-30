@@ -5,7 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.7"
 }
 
-version = "0.0.1"
+version = "1.0.0"
 group = "br.com.fiap"
 
 java {
@@ -59,8 +59,6 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.2")
 
 	// Tests
-	testCompileOnly("org.projectlombok:lombok")
-	testAnnotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.mockito:mockito-core:5.12.0")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	testImplementation("org.mockito:mockito-junit-jupiter:5.12.0")

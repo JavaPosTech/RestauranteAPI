@@ -1,27 +1,27 @@
-package br.com.fiap.restauranteapi.model.dto.usuario;
+package br.com.fiap.restauranteapi.model.request.usuario;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 
-@Schema(description = "Modelo utilizado para criação de um Usuário")
-public record CreateUsuarioDTO(
+@Schema(description = "Modelo de request para criação de um Usuário")
+public record CriarUsuarioRequest(
 
         @NotBlank(message = "O campo 'nome' é obrigatório!")
-        @Schema(description = "Nome do usuário")
+        @Schema(description = "Nome do usuário", example = "João Silva")
         String nome,
 
-        @Schema(description = "E-mail do usuário")
         @NotBlank(message = "O campo 'email' é obrigatório!")
+        @Schema(description = "E-mail do usuário", example = "joao@email.com")
         @Email(message = "O campo 'email' deve ser um endereço de e-mail válido!")
         String email,
 
-        @Schema(description = "Login do usuário")
         @NotBlank(message = "O campo 'login' é obrigatório!")
+        @Schema(description = "Login do usuário", example = "joaosilva123")
         @Size(min = 10, max = 20, message = "O Login deve ter entre 10 e 20 caracteres!")
         String login,
 
-        @Schema(description = "Senha do usuário")
         @NotBlank(message = "O campo 'senha' é obrigatório!")
+        @Schema(description = "Senha do usuário", example = "senhaSegura123!")
         @Size(min = 12, message = "A senha deve ter no mínimo 12 caracteres!")
         String senha,
 

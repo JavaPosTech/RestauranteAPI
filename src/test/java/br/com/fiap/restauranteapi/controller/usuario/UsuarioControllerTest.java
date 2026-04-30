@@ -14,21 +14,19 @@ class UsuarioControllerTest extends AbstractControllerTest {
 
     private String usuario;
 
+    private String buscarUsuario;
+
     @BeforeEach
     void setUp() throws IOException {
-        if (usuario == null) {
-            usuario = new String(Files.readAllBytes(Paths.get("src/test/resources/usuario/usuario.json")));
+        if (usuario == null && buscarUsuario == null) {
+            usuario = new String(Files.readAllBytes(Paths.get("src/test/resources/usuario/createUserRequest.json")));
+            buscarUsuario = new String(Files.readAllBytes(Paths.get("src/test/resources/usuario/findUser.json")));
         }
     }
 
     @Test
-    void getUsuarioByIdTest() throws Exception {
-        testGet("/v1/usuario/1");
-    }
-
-    @Test
     void getUsuarioByNomeTest() throws Exception {
-        testGet("/v1/usuario?nome=João Silva");
+        testPostStatusOk("/v1/usuario/buscar", buscarUsuario);
     }
 
     @Test
