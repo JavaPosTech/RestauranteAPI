@@ -39,7 +39,7 @@ public class Endereco {
     private String pontoReferencia;
 
     @NotBlank
-    @Column(nullable = false, length = 8)
+    @Column(nullable = false, length = 9)
     private String cep;
 
 }

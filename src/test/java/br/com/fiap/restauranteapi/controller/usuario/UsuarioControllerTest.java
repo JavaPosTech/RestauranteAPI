@@ -19,8 +19,8 @@ class UsuarioControllerTest extends AbstractControllerTest {
     @BeforeEach
     void setUp() throws IOException {
         if (usuario == null && buscarUsuario == null) {
-            usuario = new String(Files.readAllBytes(Paths.get("src/test/resources/usuario/usuario.json")));
-            buscarUsuario = new String(Files.readAllBytes(Paths.get("src/test/resources/usuario/buscarUsuario.json")));
+            usuario = new String(Files.readAllBytes(Paths.get("src/test/resources/usuario/createUserRequest.json")));
+            buscarUsuario = new String(Files.readAllBytes(Paths.get("src/test/resources/usuario/findUser.json")));
         }
     }
 

@@ -1,13 +1,18 @@
 package br.com.fiap.restauranteapi.controller.endereco;
 
 import br.com.fiap.restauranteapi.model.dto.endereco.EnderecoDTO;
+import br.com.fiap.restauranteapi.model.request.endereco.CriarEnderecoRequest;
 import br.com.fiap.restauranteapi.model.response.page.PageResponse;
+import br.com.fiap.restauranteapi.model.response.success.MensagemSucessoResponse;
 import br.com.fiap.restauranteapi.service.endereco.EnderecoService;
 import io.swagger.v3.oas.annotations.Parameter;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +26,10 @@ public class EnderecoController implements EnderecoDocs {
     @Override
     public ResponseEntity<PageResponse<EnderecoDTO>> getAll(@Parameter(hidden = true) @PageableDefault(size = 100, sort = "id") Pageable pageable) {
         return ResponseEntity.ok(enderecoService.findAll(pageable));
+    }
+
+    @Override
+    public ResponseEntity<MensagemSucessoResponse> saveAddress(@RequestBody @Valid CriarEnderecoRequest criarEnderecoRequest) {
+        return ResponseEntity.status(HttpStatus.CREATED.value()).body(enderecoService.saveAddress(criarEnderecoRequest));
     }
 }
