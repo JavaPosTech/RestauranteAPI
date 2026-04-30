@@ -9,8 +9,8 @@ public record EnderecoDTO(
         @Schema(description = "Identificador único do endereço")
         Integer id,
 
-        @Schema(description = "Nome do usuário proprietário do endereço")
-        String nomeUsuario,
+        @Schema(description = "Identificador único do usuário proprietário do endereço")
+        Integer usuarioId,
 
         @Schema(description = "Nome da rua")
         String rua,
@@ -32,6 +32,6 @@ public record EnderecoDTO(
 
 ) {
     public EnderecoDTO(Endereco pEndereco) {
-        this(pEndereco.getId(), pEndereco.getUsuario().getNome(), pEndereco.getRua(), pEndereco.getCidade(), pEndereco.getEstado(), pEndereco.getComplemento(), pEndereco.getPontoReferencia(), pEndereco.getCep());
+        this(pEndereco.getId(), pEndereco.getUsuario().getId(), pEndereco.getRua(), pEndereco.getCidade(), pEndereco.getEstado(), pEndereco.getComplemento(), pEndereco.getPontoReferencia(), pEndereco.getCep());
     }
 }

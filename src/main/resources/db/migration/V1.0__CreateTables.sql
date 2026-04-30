@@ -29,6 +29,6 @@ CREATE TABLE IF NOT EXISTS public.enderecos (
     estado VARCHAR(2) NOT NULL,
     complemento VARCHAR(100),
     ponto_referencia VARCHAR(100),
-    cep VARCHAR(8) NOT NULL,
+    cep VARCHAR(9) NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );

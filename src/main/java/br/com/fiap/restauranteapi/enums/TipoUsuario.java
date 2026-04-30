@@ -3,7 +3,7 @@ package br.com.fiap.restauranteapi.enums;
 import lombok.Getter;
 
 @Getter
-public enum ETipoUsuario {
+public enum TipoUsuario {
 
     DONO(1, "DONO"),
     CLIENTE(2, "CLIENTE");
@@ -11,7 +11,7 @@ public enum ETipoUsuario {
     private final int codigo;
     private final String descricao;
 
-    ETipoUsuario(int codigo, String descricao) {
+    TipoUsuario(int codigo, String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }

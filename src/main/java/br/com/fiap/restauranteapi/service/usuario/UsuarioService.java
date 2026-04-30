@@ -1,6 +1,6 @@
 package br.com.fiap.restauranteapi.service.usuario;
 
-import br.com.fiap.restauranteapi.enums.ESituacaoCadastro;
+import br.com.fiap.restauranteapi.enums.SituacaoCadastro;
 import br.com.fiap.restauranteapi.exceptions.UsuarioNotFoundException;
 import br.com.fiap.restauranteapi.model.dto.usuario.UsuarioDTO;
 import br.com.fiap.restauranteapi.model.dto.usuario.UsuarioMapper;
@@ -63,7 +63,7 @@ public class UsuarioService {
         var usuario = usuarioMapper.fromCreateRequestToEntity(pCriarUsuarioRequest);
         usuario.setSenha(passwordService.encriptografarSenha(pCriarUsuarioRequest.senha()));
         usuario.setTipoUsuario(tipoUsuarioRepository.getReferenceById(pCriarUsuarioRequest.tipoUsuario()));
-        usuario.setSituacaoCadastro(situacaoCadastroRepository.getReferenceById(ESituacaoCadastro.ATIVO.getCodigo()));
+        usuario.setSituacaoCadastro(situacaoCadastroRepository.getReferenceById(SituacaoCadastro.ATIVO.getCodigo()));
 
         usuarioRepository.save(usuario);
         return new MensagemSucessoResponse(HttpStatus.CREATED.value(), "Usuário cadastrado com sucesso!");
