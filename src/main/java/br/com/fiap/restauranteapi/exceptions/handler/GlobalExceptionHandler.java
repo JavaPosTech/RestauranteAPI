@@ -1,7 +1,7 @@
 package br.com.fiap.restauranteapi.exceptions.handler;
 
 import br.com.fiap.restauranteapi.exceptions.InvalidPasswordException;
-import br.com.fiap.restauranteapi.exceptions.UsuarioNotFoundException;
+import br.com.fiap.restauranteapi.exceptions.UserNotFoundException;
 import br.com.fiap.restauranteapi.exceptions.dto.ErrorResponseDTO;
 import br.com.fiap.restauranteapi.exceptions.dto.MethodArgumentNotValidResponseDTO;
 import jakarta.persistence.EntityNotFoundException;
@@ -125,8 +125,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(response);
     }
 
-    @ExceptionHandler(UsuarioNotFoundException.class)
-    public ResponseEntity<ErrorResponseDTO> handleUsuarioNotFoundException(UsuarioNotFoundException ex, HttpServletRequest pHttpServletRequest) {
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorResponseDTO> handleUsuarioNotFoundException(UserNotFoundException ex, HttpServletRequest pHttpServletRequest) {
 
         var response = new ErrorResponseDTO(
                 HttpStatus.NOT_FOUND.value(),
