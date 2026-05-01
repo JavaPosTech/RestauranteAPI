@@ -49,8 +49,8 @@ public class UserService {
                 user.getNome(),
                 user.getEmail(),
                 user.getLogin(),
-                user.getId_tipousuario().getDescricao(),
-                user.getId_situacaocadastro().getDescricao(),
+                user.getTipoUsuario().getDescricao(),
+                user.getSituacaoCadastro().getDescricao(),
                 user.getDataAlteracao());
     }
 
@@ -66,8 +66,8 @@ public class UserService {
 
         var user = userMapper.fromCreateRequestToEntity(pCreateUserRequest);
         user.setSenha(passwordService.encryptPassword(pCreateUserRequest.senha()));
-        user.setId_tipousuario(userTypeRepository.getReferenceById(pCreateUserRequest.tipoUsuario()));
-        user.setId_situacaocadastro(registrationStatusRepository.getReferenceById(RegistrationStatus.ACTIVE.getId()));
+        user.setTipoUsuario(userTypeRepository.getReferenceById(pCreateUserRequest.tipoUsuario()));
+        user.setSituacaoCadastro(registrationStatusRepository.getReferenceById(RegistrationStatus.ACTIVE.getId()));
 
         userRepository.save(user);
         return new SuccessMessageResponse(HttpStatus.CREATED.value(), "Usuário cadastrado com sucesso!");
@@ -79,7 +79,7 @@ public class UserService {
         userMapper.updateUser(pUpdateUserRequest, user);
 
         if (pUpdateUserRequest.situacaoCadastro() != null) {
-            user.setId_situacaocadastro(registrationStatusRepository.getReferenceById(RegistrationStatus.ACTIVE.getId()));
+            user.setSituacaoCadastro(registrationStatusRepository.getReferenceById(RegistrationStatus.ACTIVE.getId()));
         }
 
         user.setDataAlteracao(LocalDate.now());

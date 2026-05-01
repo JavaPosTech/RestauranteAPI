@@ -42,12 +42,12 @@ public class User {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_tipousuario", nullable = false)
-    private UserType id_tipousuario;
+    private UserType tipoUsuario;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_situacaocadastro", nullable = false)
-    private RegistrationStatus id_situacaocadastro;
+    private RegistrationStatus situacaoCadastro;
 
     @UpdateTimestamp
     @Column(name = "data_alteracao")

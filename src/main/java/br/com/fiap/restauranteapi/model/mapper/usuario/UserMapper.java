@@ -12,8 +12,8 @@ public interface UserMapper {
     @Mapping(target = "senha", ignore = true)
     @Mapping(target = "enderecos", ignore = true)
     @Mapping(target = "dataAlteracao", ignore = true)
-    @Mapping(target = "id_tipousuario", ignore = true)
-    @Mapping(target = "id_situacaocadastro.id", ignore = true)
+    @Mapping(target = "tipoUsuario", ignore = true)
+    @Mapping(target = "situacaoCadastro.id", ignore = true)
     User fromCreateRequestToEntity(CreateUserRequest createUserRequest);
 
     @Mapping(target = "id", ignore = true)
@@ -21,8 +21,8 @@ public interface UserMapper {
     @Mapping(target = "senha", ignore = true)
     @Mapping(target = "enderecos", ignore = true)
     @Mapping(target = "dataAlteracao", ignore = true)
-    @Mapping(target = "id_tipousuario", ignore = true)
-    @Mapping(target = "id_situacaocadastro", ignore = true)
+    @Mapping(target = "tipoUsuario", ignore = true)
+    @Mapping(target = "situacaoCadastro", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateUser(UpdateUserRequest updateUserRequest, @MappingTarget User entity);
 
