@@ -9,6 +9,7 @@ public record AtualizarUsuarioRequest(
         @Schema(description = "Nome do usuário", example = "João Silva")
         String nome,
 
+        @Size(min = 1, message = "O campo 'email' não pode ser vazio!")
         @Schema(description = "E-mail do usuário", example = "joao@email.com")
         @Email(message = "O campo 'email' deve ser um endereço de e-mail válido!")
         String email,

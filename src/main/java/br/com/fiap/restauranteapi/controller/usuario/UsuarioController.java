@@ -1,17 +1,19 @@
 package br.com.fiap.restauranteapi.controller.usuario;
 
-import br.com.fiap.restauranteapi.model.request.usuario.AtualizarUsuarioRequest;
 import br.com.fiap.restauranteapi.model.dto.usuario.UsuarioDTO;
+import br.com.fiap.restauranteapi.model.request.usuario.AtualizarUsuarioRequest;
 import br.com.fiap.restauranteapi.model.request.usuario.BuscarUsuarioRequest;
 import br.com.fiap.restauranteapi.model.request.usuario.CriarUsuarioRequest;
 import br.com.fiap.restauranteapi.model.response.success.MensagemSucessoResponse;
 import br.com.fiap.restauranteapi.service.usuario.UsuarioService;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,7 +33,7 @@ public class UsuarioController implements UsuarioDocs {
     }
 
     @Override
-    public ResponseEntity<MensagemSucessoResponse> atualizarUsuario(@PathVariable @NotNull Integer id, @RequestBody @Valid AtualizarUsuarioRequest atualizarUsuarioRequest) {
+    public ResponseEntity<MensagemSucessoResponse> atualizarUsuario(@PathVariable Integer id, @RequestBody @Valid AtualizarUsuarioRequest atualizarUsuarioRequest) {
         return ResponseEntity.ok(usuarioService.updateUser(id, atualizarUsuarioRequest));
     }
 }

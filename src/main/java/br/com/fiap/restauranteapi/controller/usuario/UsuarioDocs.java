@@ -73,7 +73,7 @@ public interface UsuarioDocs {
             @ApiResponse(
                     responseCode = "200",
                     description = "Usuário atualizado com sucesso!",
-                    content = @Content(schema = @Schema(implementation = UsuarioDTO.class))),
+                    content = @Content(schema = @Schema(implementation = MensagemSucessoResponse.class))),
             @ApiResponse(
                     responseCode = "400",
                     description = "Dados inválidos na requisição!",
@@ -88,6 +88,6 @@ public interface UsuarioDocs {
                     content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class)))
     })
     @PatchMapping("/{id}")
-    ResponseEntity<MensagemSucessoResponse> atualizarUsuario(@PathVariable @NotNull Integer id, @RequestBody @Valid AtualizarUsuarioRequest atualizarUsuarioRequest);
+    ResponseEntity<MensagemSucessoResponse> atualizarUsuario(@PathVariable Integer id, @RequestBody @Valid AtualizarUsuarioRequest atualizarUsuarioRequest);
 
 }

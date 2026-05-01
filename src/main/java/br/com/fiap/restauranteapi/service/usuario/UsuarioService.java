@@ -13,6 +13,7 @@ import br.com.fiap.restauranteapi.repository.situacaocadastro.SituacaoCadastroRe
 import br.com.fiap.restauranteapi.repository.tipousuario.TipoUsuarioRepository;
 import br.com.fiap.restauranteapi.repository.usuario.UsuarioRepository;
 import br.com.fiap.restauranteapi.service.auth.PasswordService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -74,7 +75,7 @@ public class UsuarioService {
 
     @Transactional
     public MensagemSucessoResponse updateUser(Integer pId, AtualizarUsuarioRequest pAtualizarUsuarioRequest) {
-        var usuario = usuarioRepository.getReferenceById(pId);
+        var usuario = usuarioRepository.findById(pId).orElseThrow(EntityNotFoundException::new);
         usuarioMapper.updateUsuarioFromDTO(pAtualizarUsuarioRequest, usuario);
 
         if (pAtualizarUsuarioRequest.situacaoCadastro() != null) {

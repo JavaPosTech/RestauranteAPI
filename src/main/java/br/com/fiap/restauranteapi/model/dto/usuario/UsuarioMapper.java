@@ -17,7 +17,11 @@ public interface UsuarioMapper {
     Usuario fromCreateRequestToEntity(CriarUsuarioRequest criarUsuarioRequest);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "login", ignore = true)
+    @Mapping(target = "senha", ignore = true)
+    @Mapping(target = "enderecos", ignore = true)
     @Mapping(target = "tipoUsuario", ignore = true)
+    @Mapping(target = "dataAlteracao", ignore = true)
     @Mapping(target = "situacaoCadastro", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateUsuarioFromDTO(AtualizarUsuarioRequest dto, @MappingTarget Usuario entity);
