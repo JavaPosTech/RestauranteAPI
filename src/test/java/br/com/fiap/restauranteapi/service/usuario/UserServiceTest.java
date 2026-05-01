@@ -19,10 +19,10 @@ class UserServiceTest extends AbstractTest {
 
     @Test
     void getUserByLoginTest() {
-        var usuario = userService.getUserByLogin("joao_user01");
+        var user = userService.getUserByLogin("joao_user01");
 
-        Assertions.assertNotNull(usuario);
-        Assertions.assertEquals("joao_user01", usuario.getLogin());
+        Assertions.assertNotNull(user);
+        Assertions.assertEquals("joao_user01", user.getLogin());
     }
 
     @Test
@@ -57,7 +57,7 @@ class UserServiceTest extends AbstractTest {
     }
 
     @Test
-    void saveUserEmailDuplicadoTest() {
+    void saveUserWithDuplicateEmailTest() {
 
         var emailDuplicado = new CreateUserRequest(
                 "joao",
@@ -70,7 +70,7 @@ class UserServiceTest extends AbstractTest {
     }
 
     @Test
-    void saveUserLoginDuplicadoTest() {
+    void saveUserWithDuplicateLoginTest() {
 
         var loginDuplicado = new CreateUserRequest(
                 "ana",

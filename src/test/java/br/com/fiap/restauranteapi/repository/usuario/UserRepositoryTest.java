@@ -14,37 +14,37 @@ class UserRepositoryTest extends AbstractTest {
 
     @Test
     void findByLoginTest() {
-        var usuario = Assertions.assertDoesNotThrow(() -> userRepository.findByLogin("joao_user01"));
+        var user = Assertions.assertDoesNotThrow(() -> userRepository.findByLogin("joao_user01"));
 
-        Assertions.assertNotNull(usuario);
-        Assertions.assertTrue(usuario.isPresent());
-        Assertions.assertEquals("joao_user01", usuario.get().getLogin());
+        Assertions.assertNotNull(user);
+        Assertions.assertTrue(user.isPresent());
+        Assertions.assertEquals("joao_user01", user.get().getLogin());
     }
 
     @Test
     void findByNomeTest() {
-        var usuario = Assertions.assertDoesNotThrow(() -> userRepository.findByNome("João Silva"));
+        var user = Assertions.assertDoesNotThrow(() -> userRepository.findByNome("João Silva"));
 
-        Assertions.assertNotNull(usuario);
-        Assertions.assertTrue(usuario.isPresent());
-        Assertions.assertEquals("João Silva", usuario.get().getNome());
+        Assertions.assertNotNull(user);
+        Assertions.assertTrue(user.isPresent());
+        Assertions.assertEquals("João Silva", user.get().getNome());
     }
 
     @Test
     void existsByEmailIgnoreCaseTest() {
-        var emailExistente = Assertions.assertDoesNotThrow(() -> userRepository.existsByEmailIgnoreCase("joao@email.com"));
-        var emailInexistente = Assertions.assertDoesNotThrow(() -> userRepository.existsByEmailIgnoreCase("inexistente@email.com"));
+        var emailExists = Assertions.assertDoesNotThrow(() -> userRepository.existsByEmailIgnoreCase("joao@email.com"));
+        var emailNotExists = Assertions.assertDoesNotThrow(() -> userRepository.existsByEmailIgnoreCase("inexistente@email.com"));
 
-        Assertions.assertEquals(Boolean.TRUE, emailExistente);
-        Assertions.assertNotEquals(Boolean.TRUE, emailInexistente);
+        Assertions.assertEquals(Boolean.TRUE, emailExists);
+        Assertions.assertNotEquals(Boolean.TRUE, emailNotExists);
     }
 
     @Test
     void existsByLoginIgnoreCaseTest() {
-        var loginExistente = Assertions.assertDoesNotThrow(() -> userRepository.existsByLoginIgnoreCase("joao_user01"));
-        var loginInexistente = Assertions.assertDoesNotThrow(() -> userRepository.existsByLoginIgnoreCase("inexistente_user"));
+        var loginExists = Assertions.assertDoesNotThrow(() -> userRepository.existsByLoginIgnoreCase("joao_user01"));
+        var loginNotExists = Assertions.assertDoesNotThrow(() -> userRepository.existsByLoginIgnoreCase("inexistente_user"));
 
-        Assertions.assertEquals(Boolean.TRUE, loginExistente);
-        Assertions.assertNotEquals(Boolean.TRUE, loginInexistente);
+        Assertions.assertEquals(Boolean.TRUE, loginExists);
+        Assertions.assertNotEquals(Boolean.TRUE, loginNotExists);
     }
 }

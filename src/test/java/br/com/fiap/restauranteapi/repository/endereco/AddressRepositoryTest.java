@@ -15,7 +15,7 @@ class AddressRepositoryTest extends AbstractTest {
 
     @Test
     void findAllFetchUserTest() {
-        var enderecos = Assertions.assertDoesNotThrow(() -> addressRepository.findAllFetchUser(Pageable.unpaged()));
-        Assertions.assertNotNull(enderecos);
+        var address = Assertions.assertDoesNotThrow(() -> addressRepository.findAllFetchUser(Pageable.unpaged()));
+        Assertions.assertNotNull(address);
     }
 }

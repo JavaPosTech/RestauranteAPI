@@ -17,8 +17,8 @@ class AddressServiceTest extends AbstractTest {
 
     @Test
     void findAllTest() {
-        var endereco = addressService.findAll(Pageable.unpaged());
-        Assertions.assertNotNull(endereco);
+        var address = addressService.findAll(Pageable.unpaged());
+        Assertions.assertNotNull(address);
     }
 
     @Test

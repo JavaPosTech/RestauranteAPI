@@ -27,7 +27,7 @@ class AuthServiceTest extends AbstractTest {
     }
 
     @Test
-    void authenticateUserSenhaExceptionTest() {
+    void authenticateUserPasswordExceptionTest() {
         Assertions.assertThrows(InvalidPasswordException.class, () -> authService.authenticateUser(new LoginRequest("joao_user01", "SenhaErrada@2026")));
     }
 

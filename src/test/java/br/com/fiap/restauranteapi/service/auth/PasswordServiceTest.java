@@ -19,22 +19,22 @@ class PasswordServiceTest extends AbstractTest {
     }
 
     @Test
-    void requestSenhaNullTest() {
+    void requestPasswordNullTest() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> passwordService.verifyPassword(null, "$2a$10$yNutDXanvt3WJS1KqynYIuGqFElr6VFwjM9StoQq6LCruVJVbL1lW"));
     }
 
     @Test
-    void requestSenhaEmptyTest() {
+    void requestPasswordEmptyTest() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> passwordService.verifyPassword("", "$2a$10$yNutDXanvt3WJS1KqynYIuGqFElr6VFwjM9StoQq6LCruVJVbL1lW"));
     }
 
     @Test
-    void requestSenhaCriptografadaNullTest() {
+    void requestEncryptPasswordNullTest() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> passwordService.verifyPassword("SenhaTeste@2026", null));
     }
 
     @Test
-    void requestSenhaCriptografadaEmptyTest() {
+    void requestEncryptPasswordEmptyTest() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> passwordService.verifyPassword("SenhaTeste@2026", ""));
     }
 
