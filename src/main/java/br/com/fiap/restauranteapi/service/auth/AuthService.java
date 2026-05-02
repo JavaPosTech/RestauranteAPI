@@ -1,11 +1,11 @@
 package br.com.fiap.restauranteapi.service.auth;
 
 import br.com.fiap.restauranteapi.exceptions.InvalidPasswordException;
-import br.com.fiap.restauranteapi.model.entity.usuario.User;
+import br.com.fiap.restauranteapi.model.entity.user.User;
 import br.com.fiap.restauranteapi.model.request.auth.ChangePasswordRequest;
 import br.com.fiap.restauranteapi.model.request.auth.LoginRequest;
 import br.com.fiap.restauranteapi.model.response.success.SuccessMessageResponse;
-import br.com.fiap.restauranteapi.service.usuario.UserService;
+import br.com.fiap.restauranteapi.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
