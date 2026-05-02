@@ -14,7 +14,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -74,7 +73,7 @@ public interface AddressDocs {
                     content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class)))
     })
     @PatchMapping("/{id}")
-    ResponseEntity<SuccessMessageResponse> updateAddressById(@PathVariable @NotNull Integer id, @RequestBody @Valid UpdateAddressRequest updateAddressRequest);
+    ResponseEntity<SuccessMessageResponse> updateAddressById(@PathVariable Integer id, @RequestBody @Valid UpdateAddressRequest updateAddressRequest);
 
     @Operation(summary = "Remover um endereço", description = "Realiza a exclusão de um endereço do sistema com base no ID informado na URL.")
     @ApiResponses(value = {
