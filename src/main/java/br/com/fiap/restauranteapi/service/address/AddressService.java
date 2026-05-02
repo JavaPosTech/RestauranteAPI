@@ -44,9 +44,12 @@ public class AddressService {
 
     @Transactional
     public SuccessMessageResponse updateAddressById(Integer pId, UpdateAddressRequest pUpdateAddressRequest) {
-        State.validateState(pUpdateAddressRequest.estado());
-        var address = addressRepository.findById(pId).orElseThrow(EntityNotFoundException::new);
+        if (pUpdateAddressRequest.estado() != null) {
+            State.validateState(pUpdateAddressRequest.estado());
 
+        }
+
+        var address = addressRepository.findById(pId).orElseThrow(EntityNotFoundException::new);
         addressMapper.updateAddress(pUpdateAddressRequest, address);
         addressRepository.save(address);
 
