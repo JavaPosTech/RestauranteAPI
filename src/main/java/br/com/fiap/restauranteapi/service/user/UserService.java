@@ -6,8 +6,8 @@ import br.com.fiap.restauranteapi.model.dto.user.UserDTO;
 import br.com.fiap.restauranteapi.model.entity.user.User;
 import br.com.fiap.restauranteapi.model.mapper.user.UserMapper;
 import br.com.fiap.restauranteapi.model.request.user.CreateUserRequest;
+import br.com.fiap.restauranteapi.model.request.user.SearchUserByNameRequest;
 import br.com.fiap.restauranteapi.model.request.user.UpdateUserRequest;
-import br.com.fiap.restauranteapi.model.request.user.findUserByNameRequest;
 import br.com.fiap.restauranteapi.model.response.success.SuccessMessageResponse;
 import br.com.fiap.restauranteapi.repository.registrationstatus.RegistrationStatusRepository;
 import br.com.fiap.restauranteapi.repository.user.UserRepository;
@@ -40,8 +40,8 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public UserDTO findUserByName(findUserByNameRequest pFindUserByNameRequest) {
-        var user = userRepository.findByNome(pFindUserByNameRequest.nome()).orElseThrow(() -> new UserNotFoundException("O Usuário com o nome informado não foi encontrado!"));
+    public UserDTO findUserByName(SearchUserByNameRequest pSearchUserByNameRequest) {
+        var user = userRepository.findByNome(pSearchUserByNameRequest.nome()).orElseThrow(() -> new UserNotFoundException("O Usuário com o nome informado não foi encontrado!"));
 
         return new UserDTO(
                 user.getId(),
